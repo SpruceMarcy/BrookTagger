@@ -1,0 +1,439 @@
+Prepositions
+aboard|1
+(pre)|on board
+about|3
+(pre)|regarding|concerning
+(pre)|around|through
+(pre)|around
+above|3
+(pre)|over
+(pre)|higher than
+(pre)|exceeding|surpassing|upwards of
+across|1
+(pre)|to the other side of
+after|4
+(pre)|following|succeeding|subsequent to
+(pre)|behind
+(pre)|in pursuit of
+(con)|following
+against|3
+(pre)|opposed to|in opposition to
+(pre)|in preparation for
+(pre)|touching
+along|2
+(pre)|down
+(pre)|beside
+although|1
+(con)|even though|while
+amid|1
+(pre)|in the middle of
+amidst|1
+(pre)|in the middle of
+among|2
+(pre)|amid|surrounded by|between
+(pre)|one of
+and|3
+(con)|with|in addition to
+(con)|as well as|also
+(con)|to
+around|1
+(pre)|encirciling
+as|1
+(pre)|in the character of
+(con)|while
+(con)|since|because
+(con)|which
+at|3
+(pre)|in
+(pre)|no later than
+(pre)|towards
+atop|1
+(pre)|on top of
+because|1
+(con)|as|since|for the reason that
+before|3
+(pre)|prior to|earlier than
+(pre)|in front of
+(pre)|in preference to|rather than
+behind|3
+(pre)|at the rear of|beyond
+(pre)|following
+(pre)|backing|supporting
+below|4
+(pre)|lower than
+(pre)|beneath
+(pre)|underneath
+(pre)|on a lower level than
+beneath|2
+(pre)|underneath|below
+(pre)|lower than
+beside|1
+(pre)|alongside|next to
+besides|1
+(pre)|in addition to|apart from
+between|4
+(pre)|in the middle of
+(pre)|in the period separating
+(pre)|in the interval separating
+(pre)|connecting|linking
+beyond|4
+(pre)|on the far side of
+(pre)|past|after
+(pre)|further than
+(pre)|surpassing
+but|3
+(pre)|except|apart from|besides|aside from
+(con)|yet|however
+(con)|do other than
+by|8
+(pre)|via
+(pre)|near
+(pre)|past
+(pre)|toward
+(pre)|during
+(pre)|no later than
+(pre)|according to
+(pre)|in conformity with
+circa|1
+(pre)|approximately|about|roughly
+concerning|1
+(pre)|about|regarding
+despite|1
+(pre)|in spite of|notwithsstanding|regardless of
+down|1
+(pre)|from a higher to a lower point of
+during|2
+(pre)|throughout
+(pre)|in
+except|1
+(pre)|excluding|omitting
+excluding|1
+(pre)|besides|apart from
+following|1
+(pre)|as a result of
+for|5
+(pre)|pro|giving support to
+(pre)|with the purpose of
+(pre)|on behalf of
+(pre)|in payment of
+(con)|as|because|since
+from|6
+(pre)|starting at
+(pre)|originating at
+(pre)|sourced near
+(pre)|out of
+(pre)|out of
+(pre)|because of
+if|2
+(con)|on condition that|provided
+(con)|whether
+in|3
+(pre)|inside|within
+(pre)|during
+(pre)|after
+including|1
+(pre)|counting
+inside|1
+(pre)|within
+into|3
+(pre)|sweet on
+(pre)|to enter
+(pre)|inside
+lest|1
+(con)|in case|in fear that
+like|4
+(pre)|similar to
+(pre)|in the same way as
+(pre)|such as
+(pre)|as
+minus|2
+(pre)|take away
+(pre)|below zero by
+near|4
+(pre)|close to
+(pre)|close to
+(pre)|verging on
+(pre)|similar
+nor|2
+(con)|or
+(con)|neither
+notwithstanding|1
+(pre)|despite|in spite of
+of|3
+(pre)|of
+(pre)|that is
+(pre)|of
+off|4
+(pre)|away from
+(pre)|away from
+(pre)|away from
+(pre)|having a temporary dislike of
+on|4
+(pre)|in contact with
+(pre)|part of the surface of
+(pre)|as part of
+(pre)|part of
+once|1
+(con)|as soon as|when|after
+onto|1
+(pre)|on to
+opposite|2
+(pre)|on the other side from
+(pre)|complementary to
+or|4
+(con)|or
+(con)|or
+(con)|or else|if not
+(con)|or
+out|1
+(pre)|out
+outside|1
+(pre)|external to
+over|4
+(pre)|above|atop|higher than
+(pre)|at a higher level than
+(pre)|higher than
+(pre)|across
+past|3
+(pre)|to the far side of|beyond
+(pre)|beyond
+(pre)|no longer capable of
+plus|2
+(pre)|and|added to|increased by
+(pre)|above zero by
+provided|1
+(con)|on the condition that|if
+regarding|1
+(pre)|concerning|with regard to
+save|1
+(pre)|except|other than
+since|4
+(pre)|since
+(pre)|because
+(pre)|ago
+(con)|as|because
+so|4
+(con)|therefore
+(con)|consequently
+(con)|onwards
+(con)|and
+than|1
+(con)|than
+that|1
+(con)|that
+though|1
+(con)|although|despite the fact that
+through|3
+(pre)|about
+(pre)|into and out of
+(pre)|throughout
+throughout|2
+(pre)|all through
+(pre)|from beginning to end of
+till|3
+(pre)|until
+(pre)|before
+(con)|until
+to|3
+(pre)|towards
+(pre)|to
+(pre)|to
+toward|1
+(pre)|towards
+towards|3
+(pre)|in the direction of
+(pre)|with regard to
+(pre)|for|to help
+under|4
+(pre)|below
+(pre)|at a lower level than
+(pre)|lower than
+(pre)|governed by
+underneah|3
+(pre)|below
+(pre)|under
+(pre)|concealed by
+unless|1
+(con)|except if
+unlike|1
+(pre)|different from
+until|3
+(pre)|up to|till|before
+(pre)|pending
+(con)|before
+up|2
+(pre)|from a lower to a higher point of
+(pre)|further along
+upon|1
+(pre)|on
+versus|2
+(pre)|against
+(pre)|as opposed to
+via|2
+(pre)|by way of|through
+(pre)|by means of|by virtue of
+when|4
+(con)|during the time that
+(con)|just as
+(con)|considering that
+(con)|whereas
+whenever|1
+(con)|at whatever time
+where|3
+(con)|at what place
+(con)|in what place
+(con)|in the place|at the place
+wherever|3
+(con)|in whatever place
+(con)|at whatever place
+(con)|in any case
+while|2
+(con)|during the time that|in the time that
+(con)|even though
+with|3
+(pre)|accompanied by
+(pre)|working for|using the services of
+(pre)|in the same direction as
+within|2
+(pre)|inside|in
+(pre)|in less than
+without|1
+(pre)|in the absence of
+yet|1
+(con)|though
+i|1
+(pro)|I
+all|1
+(pro)|all
+any|1
+(pro)|any
+anybody|1
+(pro)|anybody
+anyone|1
+(pro)|anyone
+anything|1
+(pro)|anything
+both|1
+(pro)|both
+each|1
+(pro)|each
+either|1
+(pro)|either
+everybody|1
+(pro)|everybody
+everyone|1
+(pro)|everyone
+everything|1
+(pro)|everything
+few|1
+(pro)|few
+he|1
+(pro)|he
+her|1
+(pro)|her
+hers|1
+(pro)|hers
+herself|1
+(pro)|herself
+him|1
+(pro)|him
+himself|1
+(pro)|himself
+his|1
+(pro)|his
+it|1
+(pro)|it
+its|1
+(pro)|its
+itself|1
+(pro)|itself
+many|1
+(pro)|many
+me|1
+(pro)|me
+mine|1
+(pro)|mine
+most|1
+(pro)|most
+my|1
+(pro)|my
+myself|1
+(pro)|myself
+neither|1
+(pro)|neither
+nobody|1
+(pro)|nobody
+none|1
+(pro)|none
+noone|1
+(pro)|noone
+nothing|1
+(pro)|nothing
+one|1
+(pro)|one
+our|1
+(pro)|our
+ours|1
+(pro)|ours
+ourselves|1
+(pro)|ourselves
+several|1
+(pro)|several
+she|1
+(pro)|she
+some|1
+(pro)|some
+somebody|1
+(pro)|somebody
+someone|1
+(pro)|someone
+something|1
+(pro)|something
+that|1
+(pro)|that
+their|1
+(pro)|their
+theirs|1
+(pro)|theirs
+them|1
+(pro)|them
+themselves|1
+(pro)|themselves
+these|1
+(pro)|these
+they|1
+(pro)|they
+this|1
+(pro)|this
+those|1
+(pro)|those
+us|1
+(pro)|us
+we|1
+(pro)|we
+what|1
+(pro)|what
+which|1
+(pro)|which
+whichever|1
+(pro)|whichever
+who|1
+(pro)|who
+whoever|1
+(pro)|whoever
+whom|1
+(pro)|whom
+whomever|1
+(pro)|whomever
+whose|1
+(pro)|whose
+you|1
+(pro)|you
+your|1
+(pro)|your
+yours|1
+(pro)|yours
+yourself|1
+(pro)|yourself
+yourselves|1
+(pro)|yourselves
