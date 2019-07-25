@@ -11,11 +11,11 @@ public class BrookTagger {
             String sentence=args[0];
             System.out.println("Running "+sentence);
             System.out.print(String.join(" ",brookTagger.tag(sentence)));
-        }
-
-        Scanner in = new Scanner(System.in);
-        while(true){
-            System.out.println(String.join(" ",brookTagger.tag(in.nextLine())));
+        }else {
+            Scanner in = new Scanner(System.in);
+            while (true) {
+                System.out.println(String.join(" ", brookTagger.tag(in.nextLine())));
+            }
         }
     }
     private Map<String,ProbabilitySet> wordProbabilities;
@@ -24,7 +24,7 @@ public class BrookTagger {
     }
     public String[] tag(String sentence) throws IOException {
         String[] words=sentence.split(" ");
-        ProbabilitySet probabilitySets[]=new ProbabilitySet[words.length];
+        ProbabilitySet[] probabilitySets = new ProbabilitySet[words.length];
         for(int i=0;i<words.length;i++){
             String word=validate(words[i]);//,wordProbabilities.keySet());
             probabilitySets[i]=wordProbabilities.containsKey(word)?wordProbabilities.get(word):ProbabilitySet.unit();
@@ -117,7 +117,7 @@ public class BrookTagger {
     }
     private ProbabilitySet[] applyModels(ProbabilitySet[] primarySet,List<String> models){
         ProbabilitySet[] secondarySet=primarySet.clone();
-        System.out.println("Testing Sentence: "+primarySet);
+        System.out.println("Testing Sentence: "+primarySet.toString());
         for(int sentenceIndex=0;sentenceIndex<primarySet.length;sentenceIndex++){
             System.out.println(" For set: "+sentenceIndex+" - "+primarySet[sentenceIndex]);
             for(String modelString:models){
