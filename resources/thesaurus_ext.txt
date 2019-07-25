@@ -437,9 +437,11 @@ yourself|1
 (pro)|yourself
 yourselves|1
 (pro)|yourselves
-a|1
+a|2
 (det)|a
-an|1
+(det)|a
+an|2
+(det)|an
 (det)|an
 the|1
 (det)|the
@@ -455,6 +457,8 @@ its|1
 (det)|its
 our|1
 (det)|our
+no|1
+(det)|no
 their|1
 (det)|their
 whose|1

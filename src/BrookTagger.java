@@ -1,11 +1,43 @@
-import javax.xml.transform.Source;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class BrookTagger {
-    private static Map<String,List<String>> getPOSsFromThesaurus(List<String>[] sources) {
+    public static void main(String[] args) throws IOException {
+        BrookTagger brookTagger = new BrookTagger();
+
+        if(args.length>0){
+            String sentence=args[0];
+            System.out.println("Running "+sentence);
+            System.out.print(String.join(" ",brookTagger.tag(sentence)));
+        }
+
+        Scanner in = new Scanner(System.in);
+        while(true){
+            System.out.println(String.join(" ",brookTagger.tag(in.nextLine())));
+        }
+    }
+    private Map<String,ProbabilitySet> wordProbabilities;
+    public BrookTagger(){
+        wordProbabilities = getProbabilitySets();
+    }
+    public String[] tag(String sentence) throws IOException {
+        String[] words=sentence.split(" ");
+        ProbabilitySet probabilitySets[]=new ProbabilitySet[words.length];
+        for(int i=0;i<words.length;i++){
+            String word=validate(words[i]);//,wordProbabilities.keySet());
+            probabilitySets[i]=wordProbabilities.containsKey(word)?wordProbabilities.get(word):ProbabilitySet.unit();
+        }
+        probabilitySets=applyModels(probabilitySets,Files.readAllLines(Paths.get("resources/models.txt")));
+        String[] tags=new String[words.length];
+        for(int i=0;i<words.length;i++) {
+            System.out.println((probabilitySets[i]));
+            tags[i] = probabilitySets[i].getHighest()+"\\"+words[i];
+        }
+        return tags;
+    }
+    private Map<String,List<String>> getPOSsFromThesaurus(List<String>[] sources) {
         Map<String, List<String>> thesaurus = new HashMap<String, List<String>>(){};
         String word = "";
         for (List<String> source : sources){
@@ -23,7 +55,12 @@ public class BrookTagger {
         }
         return thesaurus;
     }
-    private static Map<String,ProbabilitySet> getProbabilitySets(){
+    private String validate(String valStr){
+        valStr=valStr.toLowerCase().replaceAll("[^a-z0-9]","");
+        //System.out.println(valStr);
+        return valStr;
+    }
+    private Map<String,ProbabilitySet> getProbabilitySets(){
         Map<String, List<String>> pOSsFromThesaurus=new HashMap<String, List<String>>(){};
         try {
             List<String>[] sources=new List[]{Files.readAllLines(Paths.get("resources/thesaurus.dat")), Files.readAllLines(Paths.get("resources/thesaurus_ext.txt"))};
@@ -78,32 +115,47 @@ public class BrookTagger {
         }
         return results;
     }
-    public static String[] tag(String sentence){
-        String[] words=sentence.split(" ");
-        String[] tags=new String[words.length];
-        Map<String,ProbabilitySet> wordProbabilities = getProbabilitySets();
-        for(int i=0;i<words.length;i++){
-            ProbabilitySet wordProbability=wordProbabilities.containsKey(words[i])?wordProbabilities.get(words[i]):ProbabilitySet.unit();
-            tags[i]=wordProbability.getHighest();
+    private ProbabilitySet[] applyModels(ProbabilitySet[] primarySet,List<String> models){
+        ProbabilitySet[] secondarySet=primarySet.clone();
+        System.out.println("Testing Sentence: "+primarySet);
+        for(int sentenceIndex=0;sentenceIndex<primarySet.length;sentenceIndex++){
+            System.out.println(" For set: "+sentenceIndex+" - "+primarySet[sentenceIndex]);
+            for(String modelString:models){
+                String[] model=modelString.split(" ");
+                for(int modelWordStartIndex=Math.max(0,sentenceIndex-model.length+1);modelWordStartIndex<Math.min(sentenceIndex+1,primarySet.length-model.length+1);modelWordStartIndex++){
+                    double modelProbability=1;
+                    for(int modelWordIndex=0;modelWordIndex<model.length;modelWordIndex++){
+                        try {
+                            modelProbability*=primarySet[modelWordStartIndex+modelWordIndex].get(model[modelWordIndex]);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("  Comparing: model["+modelWordIndex+"] with word "+(modelWordStartIndex+modelWordIndex));
+                    }
+                    modelProbability=Math.pow(modelProbability,1/model.length);
+                    try {
+                        secondarySet[sentenceIndex].add(model[sentenceIndex-modelWordStartIndex],modelProbability);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            secondarySet[sentenceIndex].normalize();
         }
-        return tags;
+        return secondarySet;
     }
-    public static void main(String[] args){
-        String sentence="John likes the blue house at the end of the street";
-        for(String tagstr:tag(sentence)) {
-            System.out.println(tagstr);
-        }
-    }
-    public static class ProbabilitySet{
-        public double noun;
-        public double verb;
-        public double adje;
-        public double adve;
-        public double prep;
-        public double pron;
-        public double conj;
-        public double dete;
-        public ProbabilitySet(double noun,double verb, double adje, double adve,double prep, double pron, double conj,double dete){
+
+
+    static class ProbabilitySet{
+        double noun;
+        double verb;
+        double adje;
+        double adve;
+        double prep;
+        double pron;
+        double conj;
+        double dete;
+        ProbabilitySet(double noun,double verb, double adje, double adve,double prep, double pron, double conj,double dete){
             this.noun=noun;
             this.verb=verb;
             this.adje=adje;
@@ -113,11 +165,41 @@ public class BrookTagger {
             this.conj=conj;
             this.dete=dete;
         }
-        public String getHighest(){
+        String getHighest(){
             List<Double> data=new ArrayList<Double>(Arrays.asList(noun,verb,adje,adve,prep,pron,conj,dete));
-            return new String[]{"noun","verb","adjective","adverb","preposition","pronoun","conjunction","determiner"}[data.indexOf(Collections.max(data))];
+            return new String[]{"Noun","Verb","Adjective","Adverb","Preposition","Pronoun","Conjunction","Determiner"}[data.indexOf(Collections.max(data))];
         }
-        public void normalize(){
+        void add(String property,double value) throws Exception {
+            property=property.substring(0,4).toLowerCase();
+            switch (property){
+                case "noun":noun+=value;break;
+                case "verb":verb+=value;break;
+                case "adje":adje+=value;break;
+                case "adve":adve+=value;break;
+                case "prep":prep+=value;break;
+                case "pron":pron+=value;break;
+                case "conj":conj+=value;break;
+                case "dete":dete+=value;break;
+                default:
+                    throw new Exception("invalid property"+property);
+            }
+        }
+        double get(String property) throws Exception {
+            property=property.substring(0,4).toLowerCase();
+            switch (property){
+                case "noun":return noun;
+                case "verb":return verb;
+                case "adje":return adje;
+                case "adve":return adve;
+                case "prep":return prep;
+                case "pron":return pron;
+                case "conj":return conj;
+                case "dete":return dete;
+                default:
+                    throw new Exception("invalid property"+property);
+            }
+        }
+        void normalize(){
             double total=noun+verb+adve+adje+prep+pron+conj+dete;
             noun/=total;
             verb/=total;
@@ -140,7 +222,7 @@ public class BrookTagger {
             string+=" dete:"+dete;
             return string;
         }
-        public static ProbabilitySet unit(){
+        static ProbabilitySet unit(){
             return new ProbabilitySet(1d/8d,1d/8d,1d/8d,1d/8d,1d/8d,1d/8d,1d/8d,1d/8d);
         }
     }
