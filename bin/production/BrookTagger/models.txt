@@ -1,1 +1,50 @@
-determiner noun verb
+Determiner Noun Verb
+Noun Verb Verb
+Preposition Determiner Noun
+Determiner Noun Verb Verb
+Verb Preposition Determiner Noun
+Verb Preposition Determiner
+Verb Determiner Noun
+Noun Preposition Determiner
+Noun Verb Preposition
+Noun Preposition Determiner Noun
+Determiner Noun Preposition
+Noun Verb Verb Preposition
+Determiner Adjective Noun
+Noun Verb Preposition Determiner Noun
+Verb Verb Preposition
+Noun Verb Preposition Determiner
+Noun Verb Verb Preposition Determiner
+Noun Noun Verb
+Verb Verb Preposition Determiner Noun
+Determiner Noun Verb Verb Preposition
+Determiner Noun Noun
+Determiner Noun Verb Preposition
+Verb Verb Preposition Determiner
+Noun Verb Verb Determiner Noun
+Noun Verb Verb Determiner
+Determiner Noun Preposition Determiner
+Adjective Noun Verb
+Determiner Noun Preposition Determiner Noun
+Determiner Noun Verb Preposition Determiner
+Noun Preposition Noun
+Noun Verb Determiner
+Determiner Noun Verb Verb Determiner
+Verb Verb Determiner Noun
+Noun Verb Determiner Noun
+Verb Verb Determiner
+Determiner Adjective Noun Verb
+Noun Verb Adverb
+Determiner Noun Verb Determiner Noun
+Noun Verb Verb Noun
+Noun Noun Verb Verb
+Determiner Noun Verb Determiner
+Determiner Noun Preposition Noun
+Preposition Determiner Adjective Noun
+Verb Determiner Noun Preposition
+Preposition Determiner Noun Noun
+Preposition Determiner Noun Preposition
+Preposition Determiner Adjective
+Verb Verb Noun
+Verb Preposition Noun
+Noun Verb Noun

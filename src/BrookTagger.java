@@ -7,18 +7,18 @@ public class BrookTagger {
     public static void main(String[] args) throws IOException {
         BrookTagger brookTagger = new BrookTagger();
 
-        if(args.length>0){
-            String sentence=args[0];
-            System.out.println("Running "+sentence);
-            System.out.print(String.join(" ",brookTagger.tag(sentence)));
-        }else {
-            Scanner in = new Scanner(System.in);
-            while (true) {
-                System.out.println(String.join(" ", brookTagger.tag(in.nextLine())));
-            }
+        if(args.length>0) {
+            String sentence = args[0];
+            brookTagger.modelCoefficient=Double.parseDouble(args[0]);
         }
+        Scanner in = new Scanner(System.in);
+        while (true) {
+            System.out.println(String.join(" ", brookTagger.tag(in.nextLine())));
+        }
+
     }
     private Map<String,ProbabilitySet> wordProbabilities;
+    private Double modelCoefficient=0.004;
     public BrookTagger(){
         wordProbabilities = getProbabilitySets();
     }
@@ -27,16 +27,78 @@ public class BrookTagger {
         ProbabilitySet[] probabilitySets = new ProbabilitySet[words.length];
         for(int i=0;i<words.length;i++){
             String word=validate(words[i]);//,wordProbabilities.keySet());
-            probabilitySets[i]=wordProbabilities.containsKey(word)?wordProbabilities.get(word):ProbabilitySet.unit();
+            probabilitySets[i]=approximate(wordProbabilities.containsKey(word)?wordProbabilities.get(word):ProbabilitySet.unit(),word);
         }
         probabilitySets=applyModels(probabilitySets,Files.readAllLines(Paths.get("resources/models.txt")));
         String[] tags=new String[words.length];
         for(int i=0;i<words.length;i++) {
-            System.out.println((probabilitySets[i]));
+            //System.out.println(words[i]+(probabilitySets[i]));
             tags[i] = probabilitySets[i].getHighest()+"\\"+words[i];
         }
         return tags;
     }
+
+    private ProbabilitySet approximate(ProbabilitySet base, String word){
+        String suffix;
+        switch (word.length()){
+            default:;
+            case 5:suffix=word.substring(word.length()-4);
+                if(suffix.equals("ance")){base.add("noun",0.2);}
+                if(suffix.equals("ence")){base.add("noun",0.2);}
+                if(suffix.equals("ment")){base.add("noun",0.2);}
+                if(suffix.equals("ness")){base.add("noun",0.2);}
+                if(suffix.equals("ship")){base.add("noun",0.2);}
+                if(suffix.equals("able")){base.add("adjective",0.2);}
+                if(suffix.equals("ible")){base.add("adjective",0.2);}
+                if(suffix.equals("less")){base.add("adjective",0.2);}
+            case 4:suffix=word.substring(word.length()-3);
+                if(suffix.equals("ion")){base.add("noun",0.15);}
+                if(suffix.equals("ity")){base.add("noun",0.12);}
+                if(suffix.equals("ate")){base.add("verb",0.15);}
+                if(suffix.equals("ify")){base.add("verb",0.15);}
+                if(suffix.equals("ise")){base.add("verb",0.15);}
+                if(suffix.equals("ize")){base.add("verb",0.15);}
+                if(suffix.equals("ing")){base.add("verb",0.2);
+                                         base.add("adjective",0.1);}
+                if(suffix.equals("ive")){base.add("adjective",0.15);}
+                if(suffix.equals("ant")){base.add("adjective",0.15);}
+                if(suffix.equals("ent")){base.add("adjective",0.15);}
+                if(suffix.equals("ful")){base.add("adjective",0.15);}
+                if(suffix.equals("ous")){base.add("adjective",0.15);}
+            case 3:suffix=word.substring(word.length()-2);
+                if(suffix.equals("er")){base.add("noun",0.2);
+                                        base.add("adjective",0.1);}
+                if(suffix.equals("or")){base.add("noun",0.1);}
+                if(suffix.equals("en")){base.add("verb",0.15);}
+                if(suffix.equals("al")){base.add("adjective",0.15);}
+                if(suffix.equals("ed")){base.add("verb",0.2);
+                                        base.add("adjective",0.1);}
+                if(suffix.equals("ic")){base.add("adjective",0.2);}
+                if(suffix.equals("ly")){base.add("adverb",0.3);}
+            case 2:suffix=word.substring(word.length()-2);
+                if(suffix.equals("y")){base.add("adjective",0.15);}
+                if(suffix.equals("s")){base.add("noun",0.1);}
+            break;
+            case 1: break;
+            case 0: break;
+
+        }
+        if(word.length()>2){
+            if(word.substring(word.length()-2).equals("ed")){
+                base.add("verb",0.4);
+            }
+            else if(word.substring(word.length()-3).equals("ing")){
+                base.add("verb",0.5);
+            }
+            if(word.substring(word.length()-1).equals("s")){
+                base.add("noun",0.2);
+            }
+        }
+        base.normalize();
+        return base;
+
+    }
+
     private Map<String,List<String>> getPOSsFromThesaurus(List<String>[] sources) {
         Map<String, List<String>> thesaurus = new HashMap<String, List<String>>(){};
         String word = "";
@@ -117,27 +179,19 @@ public class BrookTagger {
     }
     private ProbabilitySet[] applyModels(ProbabilitySet[] primarySet,List<String> models){
         ProbabilitySet[] secondarySet=primarySet.clone();
-        System.out.println("Testing Sentence: "+primarySet.toString());
+        //System.out.println("Testing Sentence: "+primarySet.toString());
         for(int sentenceIndex=0;sentenceIndex<primarySet.length;sentenceIndex++){
-            System.out.println(" For set: "+sentenceIndex+" - "+primarySet[sentenceIndex]);
+            //System.out.println(" For set: "+sentenceIndex+" - "+primarySet[sentenceIndex]);
             for(String modelString:models){
                 String[] model=modelString.split(" ");
                 for(int modelWordStartIndex=Math.max(0,sentenceIndex-model.length+1);modelWordStartIndex<Math.min(sentenceIndex+1,primarySet.length-model.length+1);modelWordStartIndex++){
                     double modelProbability=1;
                     for(int modelWordIndex=0;modelWordIndex<model.length;modelWordIndex++){
-                        try {
-                            modelProbability*=primarySet[modelWordStartIndex+modelWordIndex].get(model[modelWordIndex]);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println("  Comparing: model["+modelWordIndex+"] with word "+(modelWordStartIndex+modelWordIndex));
+                        modelProbability*=primarySet[modelWordStartIndex+modelWordIndex].get(model[modelWordIndex]);
+                        //System.out.println("  Comparing: model["+modelWordIndex+"] with word "+(modelWordStartIndex+modelWordIndex));
                     }
-                    modelProbability=Math.pow(modelProbability,1/model.length);
-                    try {
-                        secondarySet[sentenceIndex].add(model[sentenceIndex-modelWordStartIndex],modelProbability);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    modelProbability=modelProbability*modelCoefficient/models.size();
+                    secondarySet[sentenceIndex].add(model[sentenceIndex-modelWordStartIndex],modelProbability);
                 }
             }
             secondarySet[sentenceIndex].normalize();
@@ -169,7 +223,7 @@ public class BrookTagger {
             List<Double> data=new ArrayList<Double>(Arrays.asList(noun,verb,adje,adve,prep,pron,conj,dete));
             return new String[]{"Noun","Verb","Adjective","Adverb","Preposition","Pronoun","Conjunction","Determiner"}[data.indexOf(Collections.max(data))];
         }
-        void add(String property,double value) throws Exception {
+        void add(String property,double value){
             property=property.substring(0,4).toLowerCase();
             switch (property){
                 case "noun":noun+=value;break;
@@ -180,11 +234,9 @@ public class BrookTagger {
                 case "pron":pron+=value;break;
                 case "conj":conj+=value;break;
                 case "dete":dete+=value;break;
-                default:
-                    throw new Exception("invalid property"+property);
             }
         }
-        double get(String property) throws Exception {
+        double get(String property) {
             property=property.substring(0,4).toLowerCase();
             switch (property){
                 case "noun":return noun;
@@ -196,7 +248,7 @@ public class BrookTagger {
                 case "conj":return conj;
                 case "dete":return dete;
                 default:
-                    throw new Exception("invalid property"+property);
+                    return 0;
             }
         }
         void normalize(){
