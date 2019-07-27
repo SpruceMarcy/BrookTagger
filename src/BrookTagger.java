@@ -18,7 +18,7 @@ public class BrookTagger {
 
     }
     private Map<String,ProbabilitySet> wordProbabilities;
-    private Double modelCoefficient=0.004;
+    private Double modelCoefficient=0.001375;
     public BrookTagger(){
         wordProbabilities = getProbabilitySets();
     }
@@ -183,15 +183,16 @@ public class BrookTagger {
         for(int sentenceIndex=0;sentenceIndex<primarySet.length;sentenceIndex++){
             //System.out.println(" For set: "+sentenceIndex+" - "+primarySet[sentenceIndex]);
             for(String modelString:models){
-                String[] model=modelString.split(" ");
-                for(int modelWordStartIndex=Math.max(0,sentenceIndex-model.length+1);modelWordStartIndex<Math.min(sentenceIndex+1,primarySet.length-model.length+1);modelWordStartIndex++){
+                List<String> model=new ArrayList<String>(Arrays.asList(modelString.split(" ")));
+                double modelFactor=Double.parseDouble(model.remove(0));
+                for(int modelWordStartIndex=Math.max(0,sentenceIndex-model.size()+1);modelWordStartIndex<Math.min(sentenceIndex+1,primarySet.length-model.size()+1);modelWordStartIndex++){
                     double modelProbability=1;
-                    for(int modelWordIndex=0;modelWordIndex<model.length;modelWordIndex++){
-                        modelProbability*=primarySet[modelWordStartIndex+modelWordIndex].get(model[modelWordIndex]);
+                    for(int modelWordIndex=0;modelWordIndex<model.size();modelWordIndex++){
+                        modelProbability*=primarySet[modelWordStartIndex+modelWordIndex].get(model.get(modelWordIndex));
                         //System.out.println("  Comparing: model["+modelWordIndex+"] with word "+(modelWordStartIndex+modelWordIndex));
                     }
                     modelProbability=modelProbability*modelCoefficient/models.size();
-                    secondarySet[sentenceIndex].add(model[sentenceIndex-modelWordStartIndex],modelProbability);
+                    secondarySet[sentenceIndex].add(model.get(sentenceIndex-modelWordStartIndex),modelProbability);
                 }
             }
             secondarySet[sentenceIndex].normalize();
