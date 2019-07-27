@@ -1,49 +1,100 @@
-3.172289920651512 Determiner Noun Verb
-3.0887820993957726 Noun Verb Verb
-3.6928058234070713 Preposition Determiner Noun
-2.461330043683686 Determiner Noun Verb Verb
-2.7635646114497248 Verb Preposition Determiner Noun
-4.541146648611067 Verb Preposition Determiner
-3.172289920651512 Verb Determiner Noun
-3.6928058234070713 Noun Preposition Determiner
-3.580132128356329 Noun Verb Preposition
-2.4245974440863582 Noun Preposition Determiner Noun
-3.6928058234070713 Determiner Noun Preposition
-2.6999735402593052 Noun Verb Verb Preposition
-4.083914644550363 Determiner Adjective Noun
-1.9861198031437497 Noun Verb Preposition Determiner Noun
-4.371944011136216 Verb Verb Preposition
-2.7635646114497248 Noun Verb Preposition Determiner
-2.2079627083930404 Noun Verb Verb Preposition Determiner
-2.671366133969546 Noun Noun Verb
-2.2079627083930404 Verb Verb Preposition Determiner Noun
-2.2079627083930404 Determiner Noun Verb Verb Preposition
-2.733601262705095 Determiner Noun Noun
-2.7635646114497248 Determiner Noun Verb Preposition
-3.2127130912275583 Verb Verb Preposition Determiner
-1.8250599714706626 Noun Verb Verb Determiner Noun
-2.461330043683686 Noun Verb Verb Determiner
-2.8302233895321356 Determiner Noun Preposition Determiner
-3.946554184610333 Adjective Noun Verb
-2.0203171170559617 Determiner Noun Preposition Determiner Noun
-2.2503075607858705 Determiner Noun Verb Preposition Determiner
-3.031153590371116 Noun Preposition Noun
-3.172289920651512 Noun Verb Determiner
-2.045757038529379 Determiner Noun Verb Verb Determiner
-2.461330043683686 Verb Verb Determiner Noun
-2.1887944667275883 Noun Verb Determiner Noun
-3.7786954129660644 Verb Verb Determiner
-2.97691875810094 Determiner Adjective Noun Verb
-4.077074650013719 Noun Verb Adverb
-1.8538956000939555 Determiner Noun Verb Determiner Noun
-2.148712384103826 Noun Verb Verb Noun
-2.148712384103826 Noun Noun Verb Verb
-2.5140668324442337 Determiner Noun Verb Determiner
-2.4245974440863582 Determiner Noun Preposition Noun
-3.430709446698611 Preposition Determiner Adjective Noun
-2.7635646114497248 Verb Determiner Noun Preposition
-2.4245974440863582 Preposition Determiner Noun Noun
-3.1504139959032016 Preposition Determiner Noun Preposition
-6.6736918396098295 Preposition Determiner Adjective
-3.0887820993957726 Verb Verb Noun
-3.580132128356329 Verb Preposition Noun
+0.3293605159318183 Determiner Noun Verb
+0.27484009225772865 Preposition Determiner Noun
+0.24840998784993312 Noun Verb Verb
+0.2013555347682683 Verb Preposition Determiner
+0.14889536914631638 Determiner Noun Verb Verb
+0.13187543954524028 Noun Preposition Determiner
+0.13134317956712055 Verb Preposition Determiner Noun
+0.12932200288792087 Determiner Adjective Noun
+0.12827742989672386 Verb Verb Preposition
+0.12719973119175865 Noun Verb Preposition
+0.12494994479080075 Determiner Noun Preposition
+0.11954703999208804 Verb Determiner Noun
+0.08940569105807993 Noun Verb Verb Preposition
+0.08554562626018222 Noun Preposition Determiner Noun
+0.08198869039758293 Preposition Determiner Adjective
+0.07721627120187416 Noun Verb Preposition Determiner
+0.07630483975642928 Adjective Noun Verb
+0.07267475926346922 Verb Verb Preposition Determiner
+0.06876497063742953 Noun Noun Verb
+0.06606277024815904 Verb Verb Determiner
+0.06534215733522672 Determiner Noun Noun
+0.06319140247118593 Determiner Noun Verb Preposition
+0.06216945863901488 Noun Verb Preposition Determiner Noun
+0.05966750987450346 Noun Verb Verb Preposition Determiner
+0.05883381264990396 Noun Verb Adverb
+0.05730261661354182 Noun Verb Determiner
+0.05611536072823774 Verb Verb Preposition Determiner Noun
+0.055632138346011925 Determiner Noun Verb Verb Preposition
+0.0549951894777008 Determiner Noun Preposition Determiner
+0.05497379698107569 Noun Preposition Noun
+0.054640240678329184 Preposition Pronoun Noun
+0.05011390051531568 Noun Verb Verb Determiner
+0.04853033650267779 Determiner Adjective Noun Verb
+0.044939020845556274 Preposition Determiner Adjective Noun
+0.043439531630586364 Verb Verb Determiner Noun
+0.042594443165200266 Determiner Noun Verb Preposition Determiner
+0.04138025730239476 Verb Preposition Pronoun
+0.041121989745011724 Verb Preposition Noun
+0.04101590412191003 Verb Verb Adverb
+0.041007259232093515 Verb Adverb Preposition
+0.04047426892263234 Verb Determiner Adjective
+0.039261496455666914 Noun Verb Verb Determiner Noun
+0.039012766567852006 Determiner Noun Preposition Determiner Noun
+0.038977300762616046 Preposition Determiner Noun Preposition
+0.0389217687569117 Noun Preposition Pronoun
+0.038670595534571715 Noun Verb Adjective
+0.03859272802142535 Noun Verb Determiner Noun
+0.037627737762500765 Verb Verb Noun
+0.03662825804632998 Determiner Noun Verb Verb Determiner
+0.035149614328118375 Verb Determiner Noun Preposition
+0.034815203988505065 Determiner Noun Verb Determiner
+0.032597724966910845 Adverb Preposition Determiner
+0.03253306314011868 Determiner Noun Preposition Noun
+0.03236994901045902 Adjective Noun Preposition
+0.03152202470273178 Determiner Noun Verb Adverb
+0.030582446226026853 Verb Noun Preposition
+0.03050055620948927 Preposition Determiner Noun Noun
+0.030023253075640712 Noun Verb Verb Noun
+0.0299552652367199 Noun Noun Verb Verb
+0.029321086040281334 Noun Verb Noun
+0.029113688828737695 Verb Pronoun Noun
+0.029069161570725487 Adjective Noun Verb Verb
+0.02785832124693929 Adverb Verb Determiner
+0.02670966552026316 Noun Verb Verb Adverb
+0.026444833852646538 Determiner Noun Verb Determiner Noun
+0.02640909362549191 Noun Preposition Determiner Adjective
+0.02625450250518716 Preposition Noun Preposition
+0.02527305212247808 Preposition Noun Verb
+0.02485697774596698 Verb Preposition Verb
+0.024764537672546782 Noun Noun Preposition
+0.02475986280375 Verb Preposition Determiner Adjective
+0.02446089455302342 Verb Determiner Adjective Noun
+0.02335178380696665 Verb Preposition Determiner Noun Preposition
+0.0231103830714002 Determiner Noun Verb Adjective
+0.023056203717001664 Determiner Noun Conjunction
+0.021391281854776137 Determiner Adjective Noun Verb Verb
+0.020938152453602574 Pronoun Noun Preposition
+0.0206645960484159 Noun Preposition Determiner Adjective Noun
+0.020349196012915547 Verb Adjective Preposition
+0.020268639040902623 Verb Adverb Preposition Determiner
+0.02017650548486945 Preposition Determiner Noun Verb
+0.02017286152677111 Preposition Determiner Noun Preposition Determiner
+0.019995280879229395 Preposition Adjective Noun
+0.019546291482206168 Verb Preposition Pronoun Noun
+0.019412390437364205 Determiner Noun Noun Verb
+0.019405593036743635 Determiner Noun Verb Verb Noun
+0.01920213697433561 Verb Adverb Determiner
+0.018821158382399564 Verb Determiner Noun Preposition Determiner
+0.018516042359693282 Noun Preposition Pronoun Noun
+0.018363446647976144 Noun Preposition Noun Verb
+0.017668029822154423 Preposition Verb Determiner
+0.01758937890796666 Verb Verb Pronoun
+0.017465556020190003 Determiner Adjective Noun Preposition
+0.017418667488704225 Adjective Noun Verb Preposition
+0.017275259984762408 Adverb Preposition Determiner Noun
+0.01702904139772187 Noun Verb Preposition Noun
+0.016993779679237396 Verb Adverb Verb
+0.01684833999175156 Verb Preposition Determiner Adjective Noun
+0.01679918082049157 Verb Noun Preposition Determiner
+0.016733791830179052 Verb Preposition Determiner Noun Noun

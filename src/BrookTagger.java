@@ -1,4 +1,5 @@
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -29,7 +30,7 @@ public class BrookTagger {
             String word=validate(words[i]);//,wordProbabilities.keySet());
             probabilitySets[i]=approximate(wordProbabilities.containsKey(word)?wordProbabilities.get(word):ProbabilitySet.unit(),word);
         }
-        probabilitySets=applyModels(probabilitySets,Files.readAllLines(Paths.get("resources/models.txt")));
+        probabilitySets=applyModels(probabilitySets,getResource("models.txt"));
         String[] tags=new String[words.length];
         for(int i=0;i<words.length;i++) {
             //System.out.println(words[i]+(probabilitySets[i]));
@@ -42,7 +43,7 @@ public class BrookTagger {
         String suffix;
         switch (word.length()){
             default:;
-            case 5:suffix=word.substring(word.length()-4);
+            case 6:suffix=word.substring(word.length()-4);
                 if(suffix.equals("ance")){base.add("noun",0.2);}
                 if(suffix.equals("ence")){base.add("noun",0.2);}
                 if(suffix.equals("ment")){base.add("noun",0.2);}
@@ -51,58 +52,45 @@ public class BrookTagger {
                 if(suffix.equals("able")){base.add("adjective",0.2);}
                 if(suffix.equals("ible")){base.add("adjective",0.2);}
                 if(suffix.equals("less")){base.add("adjective",0.2);}
-            case 4:suffix=word.substring(word.length()-3);
+            case 5:suffix=word.substring(word.length()-3);
                 if(suffix.equals("ion")){base.add("noun",0.15);}
                 if(suffix.equals("ity")){base.add("noun",0.12);}
                 if(suffix.equals("ate")){base.add("verb",0.15);}
                 if(suffix.equals("ify")){base.add("verb",0.15);}
                 if(suffix.equals("ise")){base.add("verb",0.15);}
                 if(suffix.equals("ize")){base.add("verb",0.15);}
-                if(suffix.equals("ing")){base.add("verb",0.2);
+                if(suffix.equals("ing")){base.add("verb",0.5);
                                          base.add("adjective",0.1);}
                 if(suffix.equals("ive")){base.add("adjective",0.15);}
                 if(suffix.equals("ant")){base.add("adjective",0.15);}
                 if(suffix.equals("ent")){base.add("adjective",0.15);}
                 if(suffix.equals("ful")){base.add("adjective",0.15);}
                 if(suffix.equals("ous")){base.add("adjective",0.15);}
-            case 3:suffix=word.substring(word.length()-2);
-                if(suffix.equals("er")){base.add("noun",0.2);
+            case 4:suffix=word.substring(word.length()-2);
+                if(suffix.equals("er")){base.add("noun",0.1);
                                         base.add("adjective",0.1);}
-                if(suffix.equals("or")){base.add("noun",0.1);}
-                if(suffix.equals("en")){base.add("verb",0.15);}
+                //if(suffix.equals("or")){base.add("noun",0.1);}
+                if(suffix.equals("en")){base.add("verb",0.1);
+                                        base.add("noun",0.1);}
                 if(suffix.equals("al")){base.add("adjective",0.15);}
-                if(suffix.equals("ed")){base.add("verb",0.2);
+                if(suffix.equals("ed")){base.add("verb",0.4);
                                         base.add("adjective",0.1);}
                 if(suffix.equals("ic")){base.add("adjective",0.2);}
                 if(suffix.equals("ly")){base.add("adverb",0.3);}
-            case 2:suffix=word.substring(word.length()-2);
-                if(suffix.equals("y")){base.add("adjective",0.15);}
-                if(suffix.equals("s")){base.add("noun",0.1);}
-            break;
+            case 3: break;
+            case 2: break;
             case 1: break;
             case 0: break;
-
-        }
-        if(word.length()>2){
-            if(word.substring(word.length()-2).equals("ed")){
-                base.add("verb",0.4);
-            }
-            else if(word.substring(word.length()-3).equals("ing")){
-                base.add("verb",0.5);
-            }
-            if(word.substring(word.length()-1).equals("s")){
-                base.add("noun",0.2);
-            }
         }
         base.normalize();
         return base;
 
     }
 
-    private Map<String,List<String>> getPOSsFromThesaurus(List<String>[] sources) {
+    private Map<String,List<String>> getPOSsFromThesaurus(String[][] sources) {
         Map<String, List<String>> thesaurus = new HashMap<String, List<String>>(){};
         String word = "";
-        for (List<String> source : sources){
+        for (String[] source : sources){
             for (String line : source) {
                 if (line.matches(".*\\|.*")) {
                     if (line.charAt(0) == '(') {
@@ -122,12 +110,18 @@ public class BrookTagger {
         //System.out.println(valStr);
         return valStr;
     }
+    private String[] getResource(String resourceName) throws IOException{
+        Object[] rawThesaurusdat=new BufferedReader(new InputStreamReader(this.getClass().getResource(resourceName).openStream(), StandardCharsets.UTF_8)).lines().toArray();
+        return Arrays.copyOf(rawThesaurusdat, rawThesaurusdat.length, String[].class);
+    }
     private Map<String,ProbabilitySet> getProbabilitySets(){
         Map<String, List<String>> pOSsFromThesaurus=new HashMap<String, List<String>>(){};
         try {
-            List<String>[] sources=new List[]{Files.readAllLines(Paths.get("resources/thesaurus.dat")), Files.readAllLines(Paths.get("resources/thesaurus_ext.txt"))};
-            pOSsFromThesaurus = getPOSsFromThesaurus((List[])sources);
-        } catch (IOException e) {
+            String[] thesaurusdat = getResource("thesaurus.dat");
+            String[] thesaurusext = getResource("thesaurus_ext.txt");
+            String[][] sources=new String[][]{thesaurusdat, thesaurusext};
+            pOSsFromThesaurus = getPOSsFromThesaurus(sources);
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
@@ -164,7 +158,7 @@ public class BrookTagger {
                 }
             }
             results.get(key).normalize();
-            double mOEFactor=(1.0d/12.0d);
+            double mOEFactor=(1.0d/3.0d);
             results.get(key).noun+=mOEFactor;
             results.get(key).verb+=mOEFactor;
             results.get(key).adve+=mOEFactor;
@@ -177,7 +171,7 @@ public class BrookTagger {
         }
         return results;
     }
-    private ProbabilitySet[] applyModels(ProbabilitySet[] primarySet,List<String> models){
+    private ProbabilitySet[] applyModels(ProbabilitySet[] primarySet,String[] models){
         ProbabilitySet[] secondarySet=primarySet.clone();
         //System.out.println("Testing Sentence: "+primarySet.toString());
         for(int sentenceIndex=0;sentenceIndex<primarySet.length;sentenceIndex++){
@@ -191,7 +185,7 @@ public class BrookTagger {
                         modelProbability*=primarySet[modelWordStartIndex+modelWordIndex].get(model.get(modelWordIndex));
                         //System.out.println("  Comparing: model["+modelWordIndex+"] with word "+(modelWordStartIndex+modelWordIndex));
                     }
-                    modelProbability=modelProbability*modelCoefficient/models.size();
+                    modelProbability=modelProbability*modelCoefficient/models.length;
                     secondarySet[sentenceIndex].add(model.get(sentenceIndex-modelWordStartIndex),modelProbability);
                 }
             }
