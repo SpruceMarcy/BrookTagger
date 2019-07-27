@@ -18,7 +18,7 @@ public class BrookTagger {
 
     }
     private Map<String,ProbabilitySet> wordProbabilities;
-    private Double modelCoefficient=0.001375;
+    private Double modelCoefficient=0.0035;
     public BrookTagger(){
         wordProbabilities = getProbabilitySets();
     }
